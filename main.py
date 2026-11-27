@@ -18,9 +18,19 @@ import sys
 
 TITLE = "Professional Mourner for Strangers' Goldfish Funerals"
 
-# Sanity-guard the contract: 1..60 characters, not only whitespace.
-assert 1 <= len(TITLE) <= 60, "title must be 1-60 characters"
-assert TITLE.strip(), "title must not be only whitespace"
+MAX_CHARS = 60
+
+
+def validate(title: str) -> str:
+    """Enforce the scorer contract: 1..60 chars, not only whitespace."""
+    if not 1 <= len(title) <= MAX_CHARS:
+        raise ValueError("title must be 1-60 characters")
+    if not title.strip():
+        raise ValueError("title must not be only whitespace")
+    return title
+
+
+validate(TITLE)
 
 
 def output_dir() -> str:
